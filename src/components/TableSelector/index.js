@@ -8,6 +8,8 @@ import { Table } from 'reactstrap';
 import DataFrame, { Row } from 'dataframe-js';
 import uuid from 'uuid';
 
+import { Link } from 'react-router-dom';
+
 class App extends Component {
 
     state = {
@@ -84,6 +86,8 @@ class App extends Component {
         return (
             <div className='container'>
                 <h1 className='text-center text-muted'>Main Menu</h1>
+                <Link to="/login">Login</Link>
+                <Link to="/signup">Signup</Link>
                 <div className='container'>
                     <Table dark>
                         { this.thead() }

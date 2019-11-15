@@ -10,4 +10,14 @@
 
 #root {
     background-color: #393E46;
+    
+}
+
+.login {
+    min-height: 100vh;
+
+    .login-card {
+        background-color: white;
+        border-radius: 10px;
+    }
 }

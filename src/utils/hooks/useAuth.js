@@ -6,9 +6,14 @@ const useAuth = () => {
     const [state, setState] = useContext(AuthContext);
 
     function loginUser(user) {
-        axios.post("https://lazerbubbles-api.herokuapp.com/login", {
+        axios({
+			url: "https://lazerbubbles-api.herokuapp.com/login",
+			method: 'POST',
 			email: user.email,
-			password: user.password
+			password: user.password,
+			headers: {
+				['Access-Control-Allow-Origin']: '*'
+			}
 		})
 		.then(res => {
 			console.log(res)

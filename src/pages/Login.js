@@ -13,7 +13,6 @@ const Login = () => {
 
 	const { loginUser } = useAuth();
 
-
 	const handleLogin = (e) => {
 		e.preventDefault();
 		loginUser({

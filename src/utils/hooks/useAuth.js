@@ -1,29 +1,34 @@
 import { useContext } from 'react';
 import { AuthContext } from '../contexts/authContext';
+import { UserContext } from '../contexts/userContext';
 import axios from 'axios';
 
 const useAuth = () => {
-    const [state, setState] = useContext(AuthContext);
+	const [authState, setAuthState] = useContext(AuthContext);
+	const [userState, setUserState] = useContext(UserContext);
 
     function loginUser(user) {
-        axios({
-			url: "https://lazerbubbles-api.herokuapp.com/login",
-			method: 'POST',
+		console.log(user);
+        axios.post("https://lazerbubbles-api.herokuapp.com/login", {
 			email: user.email,
-			password: user.password,
-			headers: {
-				['Access-Control-Allow-Origin']: '*'
-			}
+			password: user.password
 		})
 		.then(res => {
-			console.log(res)
-			window.localStorage.setItem('token', res.token);
-			window.localStorage.setItem('user', res.user);
+			console.log(res);
+			console.log(res.data.user);
+			window.localStorage.setItem('token', res.data.token);
+			setUserState({
+				...userState,
+				email: res.data.user.email,
+				id: res.data.user.id
+			})
 
-			setState({
-				...state,
+			setAuthState({
+				...authState,
 				isLoggedIn: true
 			})
+
+			window.location = '/loggedin';
 		})
 		.catch(err => {
 			console.error(err);
@@ -53,7 +58,7 @@ const useAuth = () => {
         signupUser,
         logoutUser, 
         loginUser,
-        isLoggedIn: state.loggedIn,
+        isLoggedIn: authState.isLoggedIn,
     };
 };
 

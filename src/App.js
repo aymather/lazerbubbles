@@ -1,25 +1,23 @@
-import React, { Component } from "react";
+import React from "react";
 import "./App.scss";
-import TableDisplay from "./components/TableSelector";
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-
-import { AuthProvider } from './utils/contexts/authContext';
-
+import LoggedIn from './pages/LoggedIn';
+import RootProvider from './utils/contexts';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 const App = () => {
     return (
         <div className="App">
-            <AuthProvider>
+            <RootProvider>
                 <BrowserRouter>
                     <Switch>
                         <Route path="/signup" component={Signup} />
-                        <Route path="/login" component={Login} />
-                        <Route path="/" component={TableDisplay} />
+                        <Route path="/loggedin" component={LoggedIn} />
+                        <Route path="/" component={Login} />
                     </Switch>
                 </BrowserRouter>
-            </AuthProvider>
+            </RootProvider>
         </div>
     );
 };

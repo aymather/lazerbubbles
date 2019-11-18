@@ -4,9 +4,7 @@ const AuthContext = React.createContext([{}, () => {}]);
 
 const AuthProvider = (props) => {
     const [state, setState] = useState({
-    //loggedIn: false,
-    //toggle for debugging
-        loggedIn: true,
+        isLoggedIn: false,
     });
 
     return (

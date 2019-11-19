@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { AuthContext } from '../utils/contexts/authContext';
 import { UserContext } from '../utils/contexts/userContext';
 
@@ -8,12 +8,6 @@ const LoggedIn = () => {
     const [tokenState, setTokenState] = useState({
         token: window.localStorage.getItem('token') || null
     });
-
-    useEffect(() => {
-        console.log('Starting from LoggedIn component');
-        console.log(authState);
-        console.log(userState);
-    }, [authState, userState])
 
     return (
         <div>

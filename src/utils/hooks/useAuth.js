@@ -7,6 +7,31 @@ const useAuth = () => {
 	const [authState, setAuthState] = useContext(AuthContext);
 	const [userState, setUserState] = useContext(UserContext);
 
+	function loadUser() {
+		const userToken = window.localStorage.getItem('token');
+		if(userToken) {
+			axios.get("https://lazerbubbles-api.herokuapp.com/user", {
+				headers: {
+					['x-auth-token']: userToken
+				}
+			})
+			.then(res => {
+				const { email, id } = res.data;
+				setUserState({
+					...userState,
+					email,
+					id
+				})
+				setAuthState({
+					isLoggedIn: true
+				})
+			})
+			.catch(err => {
+				console.log(err);
+			})
+		}
+	}
+
     function loginUser(user) {
 		console.log(user);
         axios.post("https://lazerbubbles-api.herokuapp.com/login", {
@@ -57,7 +82,8 @@ const useAuth = () => {
     return {
         signupUser,
         logoutUser, 
-        loginUser,
+		loginUser,
+		loadUser,
         isLoggedIn: authState.isLoggedIn,
     };
 };

@@ -1,14 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { Container, Button, Form } from 'react-bootstrap';
-
 import useAuth from '../utils/hooks/useAuth';
 
 const Login = () => {
 
 	const [state, setState] = useState({
 		email: "",
-		password: "",
+		password: ""
 	});
 
 	const { loginUser } = useAuth();
@@ -31,7 +29,6 @@ const Login = () => {
     return (
         <Container className="login d-flex flex-column justify-content-center">
             <Container className="login-card p-3 w-50">
-				<Link to="/">Main Menu</Link>
                 <Form onSubmit={handleLogin}>
 					<Form.Group>
 						<Form.Label>Email</Form.Label>

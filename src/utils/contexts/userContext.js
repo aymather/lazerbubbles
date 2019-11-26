@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const UserContext = React.createContext([{}, () => {}]);
 
-const UserProvider = (props) => {
+const UserProvider = props => {
     const [state, setState] = useState({
         email: '',
         id: ''
